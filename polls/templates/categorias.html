@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block categoria_conteudo %}
+<div class="card-body">
+  <ul class="list-group">
+    
+    {% for categoria in categorias %}
+      <li class="list-group-item">
+        <form action="{% url 'editar_categoria' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" class="form-control" name="antigo_nome_categoria" value="{{ categoria.nome }}">
+          <input type="text" class="form-control" name="novo_nome_categoria" value="{{ categoria.nome }}">
+          <br>
+          <button class="btn btn-primary" type="submit">Salvar</button>
+        </form>
+      </li>
+    {% endfor %}
+
+  </ul>
+</div>
+
+<button class="btn btn-primary" onclick="novaCategoria()">Novo</button>
+
+<script>
+  function novaCategoria() {
+    $(".list-group").append(`
+      <li class="list-group-item">
+        <form action="{% url 'salvar_categoria' %}" method="POST">
+          {% csrf_token %}
+          <input type="text" class="form-control" name="novo_nome" value="">
+          <br>
+          <button class="btn btn-primary" type="submit">Salvar</button>
+        </form>
+      </li>
+    `);
+  }
+</script>
+
+{% endblock %}

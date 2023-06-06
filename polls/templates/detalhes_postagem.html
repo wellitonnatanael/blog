@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ postagem.titulo }}</h1>
+    <p>{{ postagem.conteudo }}</p>
+    <p>Publicado em: {{ postagem.data_criacao }}</p>
+    <p>Autor: {{ postagem.autor.nome }}</p>
+    <p>Categorias: {% for categoria in postagem.categorias.all %}{{ categoria.nome }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    {% if postagem.imagem %}
+        <img src="{{ postagem.imagem.url }}" alt="{{ postagem.titulo }}" class="img-fluid">
+    {% endif %}
+
+    <h2>Comentários</h2>
+    {% if comentarios %}
+        {% for comentario in comentarios %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comentario.nome }}</h5>
+                    <p class="card-text">{{ comentario.conteudo }}</p>
+                    <p class="card-text">Enviado em: {{ comentario.data_publicacao }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>Nenhum comentário encontrado.</p>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+    {% endif %}
+
+    <hr>
+
+    <h3>Deixe um comentário</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <a href="{% url 'index' %}" class="btn btn-primary">Voltar</a>
+{% endblock %}

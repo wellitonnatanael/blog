@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Resultados da Pesquisa para "{{ query }}"</h2>
+    {% if postagens %}
+        {% for postagem in postagens %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ postagem.titulo }}</h5>
+                    <p class="card-text">{{ postagem.conteudo }}</p>
+                    <p class="card-text">Autor: {{ postagem.autor }}</p>
+                    <p class="card-text">Publicado em: {{ postagem.data_publicacao }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum resultado encontrado para "{{ query }}".</p>
+    {% endif %}
+{% endblock %}

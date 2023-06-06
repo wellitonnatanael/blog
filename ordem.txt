@@ -1,0 +1,31 @@
+START MV:
+- virtualenv "nome = venv"
+- venv\Scripts\activate
+
+INSTALA DJANGO:
+- pip install django
+
+CRIA PROJETO:
+- django-admin startproject "nome = mysite"
+
+EXECUTA SERVER:
+- python manage.py runserver
+link - http://127.0.0.1:8000/
+
+CRIA O POLLS:
+python manage.py startapp polls
+
+ATUALIZA O DB:
+- py manage.py makemigrations polls
+
+EXECUTA O DB:
+- py manage.py migrate
+
+
+
+
+
+:8000/admin root-root admin_123-root1234
+
+Login: admin || Senha: admin
+Login: admin2 || Senha: adminadmin
