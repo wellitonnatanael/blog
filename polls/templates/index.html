@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for postagem in postagens %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2>{{ postagem.titulo }}</h2>
+                <p><i class="fas fa-user"></i> Autor: {{ postagem.autor }}</p>
+                <p><i class="far fa-calendar-alt"></i> Publicado em: {{ postagem.data_criacao }}</p>
+                <p>{{ postagem.conteudo }}</p>
+                <a href="{% url 'detalhes_postagem' pk=postagem.pk %}" class="btn btn-primary">Leia mais</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Nenhuma postagem encontrada.</p>
+    {% endfor %}
+{% endblock %}
