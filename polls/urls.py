@@ -15,6 +15,7 @@ urlpatterns = [
     path('categorias/', views.categorias, name='categorias'),
     path('salvar_categoria/', views.salvar_categoria, name='salvar_categoria'),
     path('editar_categoria/', views.editar_categoria, name='editar_categoria'),
+    path('excluir_categoria/<str:nome>/', views.excluir_categoria, name='excluir_categoria'),
 
     
 ]
